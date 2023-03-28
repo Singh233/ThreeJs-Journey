@@ -8,6 +8,7 @@
     "build": "vite build"
   },
   "devDependencies": {
+    "lil-gui": "^0.18.1",
     "vite": "^4.0.4"
   },
   "dependencies": {
