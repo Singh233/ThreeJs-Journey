@@ -17,21 +17,21 @@ import imageSource from '/textures/door/color.jpg';
 
 const loadingManagar = new THREE.LoadingManager();
 
-loadingManagar.onStart = () => {
-    console.log('onStart')
-}
+// loadingManagar.onStart = () => {
+//     console.log('onStart')
+// }
 
-loadingManagar.onProgress = () => {
-    console.log('onProgress')
-}
+// loadingManagar.onProgress = () => {
+//     console.log('onProgress')
+// }
 
-loadingManagar.onLoad = () => {
-    console.log('onLoad')
-}
+// loadingManagar.onLoad = () => {
+//     console.log('onLoad')
+// }
 
-loadingManagar.onError = () => {
-    console.log('onError');
-}
+// loadingManagar.onError = () => {
+//     console.log('onError');
+// }
 const textureLoader = new THREE.TextureLoader(loadingManagar);
 const colorTexture = textureLoader.load('/textures/door/color.jpg');
 const alphaTexture = textureLoader.load('/textures/door/alpha.jpg');
@@ -41,6 +41,14 @@ const ambientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclus
 const metalnessTexture = textureLoader.load('/textures/door/metalness.jpg');
 const roughnessTexture = textureLoader.load('/textures/door/roughness.jpg');
 
+// colorTexture.repeat.x = 2;
+// colorTexture.repeat.y = 3;
+
+// colorTexture.wrapS = THREE.MirroredRepeatWrapping;
+// colorTexture.wrapT = THREE.MirroredRepeatWrapping;
+
+colorTexture.generateMipmaps = false;
+colorTexture.minFilter = THREE.NearestFilter;
 
 /**
  * Base
@@ -54,7 +62,7 @@ const scene = new THREE.Scene()
 /**
  * Object
  */
-const geometry = new THREE.BoxGeometry(1, 1, 1)
+const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ map: colorTexture })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
