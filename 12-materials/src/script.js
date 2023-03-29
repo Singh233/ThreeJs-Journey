@@ -16,8 +16,11 @@ const doorNormalTexture = textureLoader.load('/textures/door/normal.jpg');
 const doorMetalnessTexture = textureLoader.load('/textures/door/metalness.jpg');
 const doorRoughnessTexture = textureLoader.load('/textures/door/roughness.jpg');
 
-const matcapTexture = textureLoader.load('/textures/matcaps/1.png');
-const gradientsTexture = textureLoader.load('/textures/gradients/3.jpg');
+const matcapTexture = textureLoader.load('/textures/matcaps/7.png');
+const gradientsTexture = textureLoader.load('/textures/gradients/5.jpg');
+gradientsTexture.minFilter = THREE.NearestFilter
+gradientsTexture.magFilter = THREE.NearestFilter
+gradientsTexture.generateMipmaps = false;
 
 
 
@@ -34,8 +37,33 @@ const scene = new THREE.Scene()
  * Objects
  */
 
-const material = new THREE.MeshBasicMaterial();
+// const material = new THREE.MeshBasicMaterial();
 // material.map = doorColorTexture
+// material.color.set('white');
+// material.wireframe = true;
+// material.transparent = true;
+// material.alphaMap = doorAlphaTexture
+
+// const material = new THREE.MeshNormalMaterial();
+// material.flatShading = true;
+
+// const material = new THREE.MeshMatcapMaterial();
+// material.matcap = matcapTexture;
+
+// const material = new THREE.MeshDepthMaterial();
+
+// const material = new THREE.MeshLambertMaterial();
+
+// const material = new THREE.MeshPhongMaterial();
+// material.shininess = 100;
+// material.specular = new THREE.Color('red')
+
+// const material = new THREE.MeshToonMaterial()
+// material.gradientMap = gradientsTexture;
+
+const material = new THREE.MeshStandardMaterial();
+material.metalness = 0.45;
+material.roughness = 0.65;
 
 const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(0.5, 16, 16),
@@ -57,6 +85,19 @@ const torus = new THREE.Mesh(
 torus.position.x = 1.5;
 
 scene.add(sphere, plane, torus);
+
+/**
+ * Lights
+ */
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight)
+
+const pointLight = new THREE.PointLight(0xffffff, 0.5)
+pointLight.position.x = 2
+pointLight.position.y = 3;
+pointLight.position.z = 4;
+scene.add(pointLight);
 
 /**
  * Sizes
