@@ -8,7 +8,7 @@ import * as dat from 'lil-gui'
  * Base
  */
 // Debug
-const gui = new dat.GUI()
+// const gui = new dat.GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -25,14 +25,15 @@ const matcapTexture = textureLoader.load('textures/matcaps/8.png')
 /**
  * Fonts
  */
-const fontLoader = new FontLoader()
+const fontLoader = new FontLoader();
+let text = null;
 
 fontLoader.load(
     '/fonts/helvetiker_regular.typeface.json',
     (font) =>
     {
         // Material
-        const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture })
+        const material = new THREE.MeshNormalMaterial({ matcap: matcapTexture })
 
         // Text
         const textGeometry = new TextGeometry(
@@ -51,13 +52,13 @@ fontLoader.load(
         )
         textGeometry.center()
 
-        const text = new THREE.Mesh(textGeometry, material)
+        text = new THREE.Mesh(textGeometry, material)
         scene.add(text)
 
         // Donuts
         const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 32, 64)
 
-        for(let i = 0; i < 100; i++)
+        for(let i = 0; i < 150; i++)
         {
             const donut = new THREE.Mesh(donutGeometry, material)
             donut.position.x = (Math.random() - 0.5) * 10
@@ -127,6 +128,17 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+
+    // Rotate donuts
+    scene.traverse((child) => {
+        if(child instanceof THREE.Mesh && child != text) {
+            child.rotation.y = 
+                elapsedTime * 0.2 + 
+                child.position.x * 0.01 + 
+                child.position.y * 0.01 + 
+                child.position.z * 0.01;
+        }
+    })
 
     // Update controls
     controls.update()
