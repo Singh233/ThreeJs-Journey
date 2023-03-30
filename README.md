@@ -59,7 +59,7 @@ Start the server
 
 
 ## 🚀 About Me
-I'm a Aspiring full stack developer...
+I'm an Aspiring full stack developer...
 Love to create, design and build cool projects 😎 and have passion for creating innovative solutions to complex problems using cutting-edge technologies. I have a strong understanding of both front-end and back-end development, and constantly seeking to improve my skills in these areas.
 
 
