@@ -8,10 +8,13 @@ To get started with Three.js, you will need to have a good understanding of Java
 Overall, learning Three.js is a valuable and exciting journey, as it allows you to create immersive and engaging experiences on the web, from games to visualizations and more.
 ## Demo
 
-- My first three js project
+My first three js project
 
-https://webgl-3d-text-silk-phi.vercel.app/ 🚀
+- https://webgl-3d-text-silk-phi.vercel.app/ 🚀
 
+Playing with lights
+
+- https://playing-with-lights.vercel.app/ 💡
 
 ## Run Project Locally
 
