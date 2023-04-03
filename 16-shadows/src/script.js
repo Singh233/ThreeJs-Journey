@@ -7,6 +7,9 @@ import * as dat from 'lil-gui'
  */
 const textureLoader = new THREE.TextureLoader();
 const bakeShadow = textureLoader.load('/textures/bakedShadow.jpg');
+const simpleShadow = textureLoader.load('/textures/simpleShadow.jpg');
+
+
 
 
 /**
@@ -111,9 +114,10 @@ sphere.castShadow = true;
 
 const plane = new THREE.Mesh(
     new THREE.PlaneGeometry(5, 5),
-    new THREE.MeshBasicMaterial({
-        map: bakeShadow
-    })
+    // new THREE.MeshBasicMaterial({
+    //     map: bakeShadow
+    // })
+    material
 )
 plane.rotation.x = - Math.PI * 0.5
 plane.position.y = - 0.5
@@ -121,6 +125,20 @@ plane.position.y = - 0.5
 plane.receiveShadow = true;
 
 scene.add(sphere, plane)
+
+const sphereShadow = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.5, 1.5),
+    new THREE.MeshBasicMaterial({
+        color: 0x000000,
+        transparent: true,
+        alphaMap: simpleShadow
+    })
+)
+
+sphereShadow.rotation.x = - Math.PI * 0.5
+sphereShadow.position.y = plane.position.y + 0.01
+
+scene.add(sphereShadow);
 
 /**
  * Sizes
@@ -135,6 +153,8 @@ window.addEventListener('resize', () =>
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
+
+    
 
     // Update camera
     camera.aspect = sizes.width / sizes.height
@@ -182,6 +202,17 @@ const tick = () =>
 
     // Update controls
     controls.update()
+
+    // Update the sphere
+    sphere.position.x = Math.cos(elapsedTime) * 1.5
+    sphere.position.z = Math.sin(elapsedTime) * 1.5
+    sphere.position.y = Math.abs( Math.sin(elapsedTime * 3));
+
+    // Update simple shadow
+    sphereShadow.position.x = sphere.position.x;
+    sphereShadow.position.z = sphere.position.z;
+    sphereShadow.material.opacity = (1 - sphere.position.y) * 0.5
+    
 
     // Render
     renderer.render(scene, camera)
