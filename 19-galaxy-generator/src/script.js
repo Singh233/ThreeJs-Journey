@@ -15,13 +15,63 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 /**
- * Test cube
+ * Galaxy
  */
-const cube = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial()
-)
-scene.add(cube)
+const parameters = {}
+parameters.count = 100000;
+parameters.size = 0.01;
+
+
+let geometry = null;
+let material = null;
+let points = null;
+
+
+
+
+const generateGalaxy = () => {
+    // Destroy old galaxy
+    if (points !== null) {
+        geometry.dispose();
+        material.dispose();
+        scene.remove(points);
+    }
+    geometry = new THREE.BufferGeometry();
+
+    const positions = new Float32Array(parameters.count * 3);
+
+    for (let i = 0; i < parameters.count; i++) {
+        const i3 = i * 3;
+
+        positions[i3    ] = (Math.random() - 0.5) * 3;
+        positions[i3 + 1] = (Math.random() - 0.5) * 3;
+        positions[i3 + 2] = (Math.random() - 0.5) * 3;
+
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    /**
+     * Material
+     */
+    material = new THREE.PointsMaterial({
+        size: parameters.size,
+        sizeAttenuation: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+    })
+
+    /**
+     * Points
+     */
+    points = new THREE.Points(geometry, material);
+    scene.add(points);
+}
+
+generateGalaxy();
+
+gui.add(parameters, 'count').min(100).max(100000).step(100).onFinishChange(generateGalaxy);
+gui.add(parameters, 'size').min(0.001).max(0.1).step(0.001).onFinishChange(generateGalaxy);
 
 /**
  * Sizes
