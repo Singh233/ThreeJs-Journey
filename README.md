@@ -16,6 +16,10 @@ Playing with lights
 
 - https://playing-with-lights.vercel.app/ 💡
 
+Galaxy Generator
+
+- https://19-galaxy-generator-sage.vercel.app/ 🌌
+
 ## Run Project Locally
 
 Clone the project
