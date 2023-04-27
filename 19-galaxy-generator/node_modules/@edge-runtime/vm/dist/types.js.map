@@ -1,0 +1,1 @@
+{"version":3,"file":"types.js","sourceRoot":"","sources":["../src/types.ts"],"names":[],"mappings":"","sourcesContent":["/**\n * Just any type of object indexed by string or numbers where the value can\n * be anything or the provided generic.\n */\nexport interface Dictionary<T = any> {\n  [key: string | number]: T\n}\n"]}
