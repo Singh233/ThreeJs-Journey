@@ -61,7 +61,9 @@ const environmentMapTexture = cubeTextureLoader.load([
  */
 // World
 const world = new CANNON.World();
-world.gravity.set(0, -9.82, 0);
+world.broadphase = new CANNON.SAPBroadphase(world); // SAPBroadphase is faster than NaiveBroadphase
+world.allowSleep = true; // Allow objects that are not moving to sleep and not be calculated
+world.gravity.set(0, -9.82, 0); // Set gravity to -9.82 m/s^2 in the y direction (downwards) (earth gravity)
 
 // Materials
 const defaultMaterial = new CANNON.Material('default');
