@@ -1,3 +1,5 @@
+.DS_Store
+
 /04-local-server/node_modules
 /05-transform-objects/node_modules
 /06-animations/node_modules
@@ -19,3 +21,4 @@
 /23-raycaster-and-mouse-events/node_modules
 /24-custom-models-with-blender/node_modules
 /25-realistic-render/node_modules
+/26-code-structuring-for-bigger-projects/node_modules
