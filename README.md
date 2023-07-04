@@ -20,6 +20,10 @@ Galaxy Generator
 
 - https://19-galaxy-generator-sage.vercel.app/ 🌌
 
+My Portfolio
+
+- https://scroll-based-animation-mu.vercel.app/ 💪
+
 ## Run Project Locally
 
 Clone the project
