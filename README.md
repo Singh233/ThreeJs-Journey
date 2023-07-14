@@ -6,23 +6,31 @@ Three.js is a popular open-source JavaScript library used for creating 3D graphi
 To get started with Three.js, you will need to have a good understanding of JavaScript and some basic 3D graphics concepts. You can start by exploring the Three.js documentation and examples, which provide a range of resources for getting started and learning the basics. From there, you can gradually build your knowledge and skills, experimenting with different features and techniques to create engaging and interactive 3D experiences on the web.
 
 Overall, learning Three.js is a valuable and exciting journey, as it allows you to create immersive and engaging experiences on the web, from games to visualizations and more.
-## Demo
+# Demo
 
-My first three js project
+## My first three js project
 
 - https://webgl-3d-text-silk-phi.vercel.app/ 🚀
+  
+![hellothreejs](https://github.com/Singh233/Three.Js-Journey/assets/37498067/415b8691-c23b-409e-ac03-d06a708addc9)
 
-Playing with lights
+## Playing with lights
 
 - https://playing-with-lights.vercel.app/ 💡
+  
+![playing_with_lights](https://github.com/Singh233/Three.Js-Journey/assets/37498067/b83b6265-4605-4ee8-90b4-79084f1e7ee8)
 
-Galaxy Generator
+## Galaxy Generator
 
 - https://19-galaxy-generator-sage.vercel.app/ 🌌
+  
+![galaxy](https://github.com/Singh233/Three.Js-Journey/assets/37498067/f54429c5-eca3-47c1-aac0-abea37b653de)
 
-My Portfolio
+## My Portfolio
 
 - https://scroll-based-animation-mu.vercel.app/ 💪
+  
+![portfolio](https://github.com/Singh233/Three.Js-Journey/assets/37498067/a4ae93b4-6f72-4c02-871a-b04d6d51b753)
 
 ## Run Project Locally
 
