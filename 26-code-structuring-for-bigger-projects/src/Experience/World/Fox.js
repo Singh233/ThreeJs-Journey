@@ -9,7 +9,7 @@ export default class Fox {
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
     this.time = new Time();
-    this.debug = new Debug();
+    this.debug = this.experience.debug;
 
     // Debug
     if (this.debug.active) {
