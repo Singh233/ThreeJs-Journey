@@ -9,5 +9,17 @@ body,
     height: 100%;
     background: ivory;
     background-color: black;
+}
 
+.label > div
+{
+    font-family: Helvetica, Arial;
+    position: absolute;
+    background: #00000088;
+    color: white;
+    padding: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 30px;
+    user-select: none;
 }

@@ -1,4 +1,5 @@
 import {
+  Html,
   PivotControls,
   TransformControls,
   OrbitControls,
@@ -7,6 +8,7 @@ import { useRef } from "react";
 
 export default function Experience() {
   const cube = useRef();
+  const sphere = useRef();
 
   return (
     <>
@@ -26,6 +28,16 @@ export default function Experience() {
         <mesh position-x={-2}>
           <sphereGeometry />
           <meshStandardMaterial color="orange" />
+          <Html
+            ref={sphere}
+            position={[1, 1, 0]}
+            wrapperClass="label"
+            center
+            distanceFactor={8}
+            // occlude={[cube]}
+          >
+            That's a sphere 👍
+          </Html>
         </mesh>
       </PivotControls>
 
