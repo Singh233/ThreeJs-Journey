@@ -10,6 +10,12 @@ export default function Experience() {
   const { camera, gl } = useThree();
 
   useFrame((state, delta) => {
+    // rotate camera
+    // const angle = state.clock.elapsedTime;
+    // state.camera.position.x = Math.sin(angle) * 8
+    // state.camera.position.z = Math.cos(angle) * 8
+    // state.camera.lookAt(0, 0, 0)
+
     cube.current.rotation.y += delta;
     // group.current.rotation.y += delta;
   });
