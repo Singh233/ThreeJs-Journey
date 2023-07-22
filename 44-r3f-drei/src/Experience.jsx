@@ -1,4 +1,6 @@
 import {
+  Float,
+  Text,
   Html,
   PivotControls,
   TransformControls,
@@ -51,6 +53,21 @@ export default function Experience() {
         <planeGeometry />
         <meshStandardMaterial color="greenyellow" />
       </mesh>
+
+      <Float speed={4} floatIntensity={2}>
+        
+        <Text
+          font="./bangers-v20-latin-regular.woff"
+          fontSize={1}
+          color={"salmon"}
+          position-y={2}
+          maxWidth={2}
+          textAlign="center"
+        >
+          I LOVE R3F
+          {/* <meshNormalMaterial /> */}
+        </Text>
+      </Float>
     </>
   );
 }
