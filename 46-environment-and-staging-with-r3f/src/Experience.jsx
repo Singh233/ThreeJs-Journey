@@ -8,6 +8,8 @@ import {
   RandomizedLight,
   ContactShadows,
   Sky,
+  Environment,
+  Lightformer,
 } from "@react-three/drei";
 import { useControls } from "leva";
 import { useRef } from "react";
@@ -27,7 +29,7 @@ export default function Experience() {
   });
 
   const { color, opacity, blur } = useControls("contact shadows", {
-    color: "#1d8f75",
+    color: "#4b2709",
     opacity: { value: 0.4, min: 0, max: 1 },
     blur: { value: 2.8, min: 0, max: 10 },
   });
@@ -36,8 +38,41 @@ export default function Experience() {
     sunPosition: { value: [1, 2, 3] },
   });
 
+  const { envMapIntensity, envMapHeight, envMapRadius, envMapScale } = useControls("environment map", {
+    envMapIntensity: { value: 3.5, min: 0, max: 12 },
+    envMapHeight: { value: 7, min: 0, max: 100 },
+    envMapRadius: { value: 28, min: 10, max: 1000 },
+    envMapScale: { value: 100, min: 10, max: 1000 },
+  });
+
+
+
   return (
     <>
+      <Environment
+        // background
+        // files={"./environmentMaps/the_sky_is_on_fire_2k.hdr"}
+        preset="sunset"
+        ground={{
+          height: envMapHeight,
+          radius: envMapRadius,
+          scale: envMapScale,
+        }}
+      >
+        {/* <color args={["black"]} attach={"background"} />
+        <Lightformer
+          position-z={-5}
+          scale={10}
+          color={"red"}
+          intensity={10}
+          form={"ring"}
+        /> */}
+        {/* <mesh position-z={-5} scale={10}>
+          <planeGeometry />
+          <meshBasicMaterial color={[10, 0, 0]} />
+        </mesh> */}
+      </Environment>
+
       {/* <BakeShadows /> */}
       {/* <SoftShadows
         frustum={3.75}
@@ -73,7 +108,7 @@ export default function Experience() {
       </AccumulativeShadows> */}
 
       <ContactShadows
-        position={[0, -0.99, 0]}
+        position={[0, 0, 0]}
         scale={10}
         resolution={512}
         far={5}
@@ -83,7 +118,7 @@ export default function Experience() {
         frames={1}
       />
 
-      <directionalLight
+      {/* <directionalLight
         castShadow
         ref={directionalLight}
         position={sunPosition}
@@ -98,22 +133,31 @@ export default function Experience() {
       />
       <ambientLight intensity={0.5} />
 
-      <Sky sunPosition={sunPosition}/>
+      <Sky sunPosition={sunPosition}/> */}
 
-      <mesh castShadow position-x={-2}>
+      <mesh castShadow position-x={-2} position-y={1}>
         <sphereGeometry />
-        <meshStandardMaterial color="orange" />
+        <meshStandardMaterial
+          color="orange"
+          envMapIntensity={envMapIntensity}
+        />
       </mesh>
 
-      <mesh castShadow ref={cube} position-x={2} scale={1.5}>
+      <mesh castShadow ref={cube} position-x={2} position-y={1} scale={1.5}>
         <boxGeometry />
-        <meshStandardMaterial color="mediumpurple" />
+        <meshStandardMaterial
+          color="mediumpurple"
+          envMapIntensity={envMapIntensity}
+        />
       </mesh>
 
-      <mesh position-y={-1} rotation-x={-Math.PI * 0.5} scale={10}>
+      {/* <mesh position-y={0} rotation-x={-Math.PI * 0.5} scale={10}>
         <planeGeometry />
-        <meshStandardMaterial color="greenyellow" />
-      </mesh>
+        <meshStandardMaterial
+          color="greenyellow"
+          envMapIntensity={envMapIntensity}
+        />
+      </mesh> */}
     </>
   );
 }
