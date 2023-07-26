@@ -7,6 +7,7 @@ import {
   OrbitControls,
   RandomizedLight,
   ContactShadows,
+  Sky,
 } from "@react-three/drei";
 import { useControls } from "leva";
 import { useRef } from "react";
@@ -29,6 +30,10 @@ export default function Experience() {
     color: "#1d8f75",
     opacity: { value: 0.4, min: 0, max: 1 },
     blur: { value: 2.8, min: 0, max: 10 },
+  });
+
+  const { sunPosition } = useControls("sky", {
+    sunPosition: { value: [1, 2, 3] },
   });
 
   return (
@@ -81,7 +86,7 @@ export default function Experience() {
       <directionalLight
         castShadow
         ref={directionalLight}
-        position={[1, 2, 3]}
+        position={sunPosition}
         intensity={1.5}
         shadow-mapSize={[1024, 1024]}
         shadow-camera-near={1}
@@ -92,6 +97,8 @@ export default function Experience() {
         shadow-camera-left={-5}
       />
       <ambientLight intensity={0.5} />
+
+      <Sky sunPosition={sunPosition}/>
 
       <mesh castShadow position-x={-2}>
         <sphereGeometry />
