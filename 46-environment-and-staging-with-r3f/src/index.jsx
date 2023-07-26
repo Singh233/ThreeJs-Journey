@@ -11,7 +11,7 @@ const created = ({ gl, scene }) => {
 };
 root.render(
   <Canvas
-    shadows
+    shadows = {false}
     camera={{
       fov: 45,
       near: 0.1,
