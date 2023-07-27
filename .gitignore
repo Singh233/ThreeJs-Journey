@@ -1,3 +1,4 @@
+DS_Store
 .DS_Store
 
 /04-local-server/node_modules
@@ -22,3 +23,9 @@
 /24-custom-models-with-blender/node_modules
 /25-realistic-render/node_modules
 /26-code-structuring-for-bigger-projects/node_modules
+
+/43-first-r3f-application/node_modules
+/44-r3f-drei/node_modules
+/45-debug-a-r3f-application/node_modules
+/46-environment-and-staging-with-r3f/node_modules
+/47-load-models-with-r3f/node_modules
