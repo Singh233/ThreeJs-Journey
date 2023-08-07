@@ -1,5 +1,6 @@
 DS_Store
 .DS_Store
+node_modules
 
 /04-local-server/node_modules
 /05-transform-objects/node_modules
@@ -29,3 +30,4 @@ DS_Store
 /45-debug-a-r3f-application/node_modules
 /46-environment-and-staging-with-r3f/node_modules
 /47-load-models-with-r3f/node_modules
+/48-3d-text-with-r3f/node_modules
