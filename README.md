@@ -51,6 +51,13 @@ Overall, learning Three.js is a valuable and exciting journey, as it allows you 
 
 ![drei](https://github.com/Singh233/ThreeJs-Journey/assets/37498067/bd67200c-4df6-4a35-a458-446f4c43cc4f)
 
+## React Three Fiber 3D Text ⚛️
+
+- https://48-3d-text-with-r3f.vercel.app/
+
+![3dtext](https://github.com/Singh233/ThreeJs-Journey/assets/37498067/04cdf4a1-7152-41c9-89c3-1d7cd570040b)
+
+
 ## Run Project Locally
 
 Clone the project
