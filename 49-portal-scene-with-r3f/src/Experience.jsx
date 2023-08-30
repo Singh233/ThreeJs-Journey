@@ -1,4 +1,10 @@
-import { Center, OrbitControls, useGLTF, useTexture } from "@react-three/drei";
+import {
+  Center,
+  OrbitControls,
+  Sparkles,
+  useGLTF,
+  useTexture,
+} from "@react-three/drei";
 import { DoubleSide } from "three";
 
 export default function Experience() {
@@ -37,6 +43,15 @@ export default function Experience() {
         >
           <meshBasicMaterial color={"#ffffff"} />
         </mesh>
+
+        {/* Fireflies */}
+        <Sparkles
+          size={6}
+          scale={[4, 2, 4]}
+          position-y={1}
+          speed={0.2}
+          count={30}
+        />
       </Center>
     </>
   );
