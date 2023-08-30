@@ -1,4 +1,5 @@
 import {
+  shaderMaterial,
   Center,
   OrbitControls,
   Sparkles,
@@ -7,10 +8,33 @@ import {
 } from "@react-three/drei";
 import { DoubleSide } from "three";
 
+import * as THREE from "three";
+import portalVertexShader from "./shaders/portal/vertex.glsl";
+import portalFragmentShader from "./shaders/portal/fragment.glsl";
+import { extend, useFrame } from "@react-three/fiber";
+import { useRef } from "react";
+
+const PortalMaterial = shaderMaterial(
+  {
+    uTime: 0,
+    uColorStart: new THREE.Color("#000000"),
+    uColorEnd: new THREE.Color("#ffffff"),
+  },
+  portalVertexShader,
+  portalFragmentShader
+);
+
+extend({ PortalMaterial });
+
 export default function Experience() {
+  const portalMateraiRef = useRef();
   const { nodes } = useGLTF("./model/portal.glb");
   const bakedTexture = useTexture("./model/baked.jpg");
   bakedTexture.flipY = false;
+
+  useFrame((state, delta) => {
+    portalMateraiRef.current.uTime += delta;
+  });
 
   return (
     <>
@@ -41,7 +65,18 @@ export default function Experience() {
           position={nodes.portalLight.position}
           rotation={nodes.portalLight.rotation}
         >
-          <meshBasicMaterial color={"#ffffff"} />
+          {/* <shaderMaterial
+            vertexShader={portalVertexShader}
+            fragmentShader={portalFragmentShader}
+            uniforms={{
+              uTime: { value: 0 },
+              uColorStart: { value: new THREE.Color("#000000") },
+              uColorEnd: { value: new THREE.Color("#ffffff") },
+            }}
+          /> */}
+
+          {/* Using drei */}
+          <portalMaterial ref={portalMateraiRef} />
         </mesh>
 
         {/* Fireflies */}
