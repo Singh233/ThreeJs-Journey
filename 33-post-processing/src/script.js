@@ -7,6 +7,7 @@ import { DotScreenPass } from "three/examples/jsm/postprocessing/DotScreenPass.j
 import { GlitchPass } from "three/examples/jsm/postprocessing/GlitchPass.js";
 import { RGBShiftShader } from "three/examples/jsm/shaders/RGBShiftShader.js";
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
+import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader.js";
 import * as dat from "lil-gui";
 
 /**
@@ -102,6 +103,10 @@ window.addEventListener("resize", () => {
   // Update renderer
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Update effect composer
+  effectComposer.setSize(sizes.width, sizes.height);
+  effectComposer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
 /**
@@ -132,6 +137,7 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.useLegacyLights = false;
 renderer.toneMapping = THREE.ReinhardToneMapping;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMappingExposure = 1.5;
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -152,13 +158,17 @@ dotScreenPass.enabled = false;
 effectComposer.addPass(dotScreenPass);
 
 const glitchPass = new GlitchPass();
-glitchPass.enabled = false;
+glitchPass.enabled = true;
 glitchPass.goWild = false;
 effectComposer.addPass(glitchPass);
 
 const rgbShiftPass = new ShaderPass(RGBShiftShader);
-rgbShiftPass.enabled = true;
+rgbShiftPass.enabled = false;
 effectComposer.addPass(rgbShiftPass);
+
+// Gamma correction pass
+const gammaCorrectionPass = new ShaderPass(GammaCorrectionShader);
+effectComposer.addPass(gammaCorrectionPass);
 
 /**
  * Animate
@@ -172,7 +182,7 @@ const tick = () => {
   controls.update();
 
   // Render
-  //   renderer.render(scene, camera);
+  // renderer.render(scene, camera);
   effectComposer.render();
 
   // Call tick again on the next frame
